@@ -35,6 +35,17 @@
 
   <name>${project.artifactId}-${project.version}</name>
 
+  <repositories>
+    <repository>
+      <id>M.O.R.F.-mvn-repo</id>
+      <url>https://raw.github.com/hexlab-maven/M.O.R.F./mvn-repo/</url>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+      </snapshots>
+    </repository>
+  </repositories>
+
   <properties>
     <scala.version>2.10.3</scala.version>
     <akka.version>2.2.3</akka.version>
