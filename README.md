@@ -4,6 +4,13 @@ Play BnS
 Blade & Soul® Unofficial Research Project. 
 
 
+Authors
+========
+* hex1r0 (Team Lead / Core Dev / Reversing / Tools)
+* Evengard (Reversing / Tools / Core Dev)
+* B_J (Core Dev)
+
+
 Aim
 ========
 
@@ -12,7 +19,6 @@ Our aim is to research Blade & Soul® MMORPG. Project was founded and is dedicat
 
 Technologies used
 ========
-
 * Scala http://www.scala-lang.org/
 * Maven http://maven.apache.org/
 * Akka http://akka.io/
