@@ -82,6 +82,11 @@
       <artifactId>commons-math3</artifactId>
       <version>3.0</version>
     </dependency>
+    <dependency>
+      <groupId>hexlab.morf</groupId>
+      <artifactId>morf</artifactId>
+      <version>0.1</version>
+    </dependency>
   </dependencies>
   <modules>
     <module>../commons</module>

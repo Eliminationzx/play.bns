@@ -22,8 +22,9 @@
 
 package hexlab.bns.auth.config
 
-import hexlab.commons.util.{ConfigProperty, Config}
 import java.net.InetAddress
+import hexlab.morf.util.Config
+import hexlab.morf.util.ConfigProperty
 
 /**
  * This class ...

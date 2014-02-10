@@ -23,7 +23,8 @@
 package hexlab.bns.auth
 
 import hexlab.bns.auth.config.ConfigMarker
-import hexlab.commons.util.{ConfigFactory, Log}
+import hexlab.morf.util.ConfigUtil
+import hexlab.morf.util.Log
 
 /**
  * This class is an AuthServer entry point
@@ -39,7 +40,7 @@ object AuthServer {
 
     if (installConf) {
       _log.info("Installing configs")
-      ConfigFactory.createAllFrom("config", AuthServer.getClass, classOf[ConfigMarker].getPackage.getName)
+      ConfigUtil.createAllFrom("config", AuthServer.getClass, classOf[ConfigMarker].getPackage.getName)
       _log.info("Installing configs finished")
       sys.exit(0)
     }
@@ -51,7 +52,7 @@ object AuthServer {
       sys.exit(0)
     }
 
-    val configs = ConfigFactory.loadAllFrom("config", AuthServer.getClass, classOf[ConfigMarker].getPackage.getName)
+    val configs = ConfigUtil.loadAllFrom("config", AuthServer.getClass, classOf[ConfigMarker].getPackage.getName)
     // TODO load database
     // TODO create actor system
     // TODO broadcast configs
