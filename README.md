@@ -9,6 +9,7 @@ Authors
 * hex1r0 (Team Lead / Core Dev / Reversing / Tools)
 * Evengard (Reversing / Tools / Core Dev)
 * B_J (Core Dev)
+* marti-nfalse (Core Dev)
 
 
 Aim
