@@ -45,28 +45,27 @@ object sm {
 
   class ServerList(gsis: common.GameServerInfo*) extends BnSServerMessage {
     def writeImpl() {
-      val blocks = gsis map {
-        info =>
-          val b = newBlock
+      val blocks = gsis map (info => {
+        val b = newBlock
 
-          b.writeH(info.id) // social id
-          b.writeH(info.id) // game id
-          b.writeUtf16(info.name)
-          b.writeC(1)
-          b.writeC(1)
-          b.write(info.ip.getAddress) // social
-          b.writeH(info.port)
-          b.writeD(0)
-          b.writeC(1)
-          b.writeC(1)
-          b.writeC(1)
-          b.writeH(0)
-          b.writeC(0)
-          b.writeC(1) // or 2
-          b.write(info.ip.getAddress) // game
-          b.writeH(info.port)
-          b.writeH(0)
-      }
+        b.writeH(info.id) // social id
+        b.writeH(info.id) // game id
+        b.writeUtf16(info.name)
+        b.writeC(1)
+        b.writeC(1)
+        b.write(info.ip.getAddress) // social
+        b.writeH(info.port)
+        b.writeD(0)
+        b.writeC(1)
+        b.writeC(1)
+        b.writeC(1)
+        b.writeH(0)
+        b.writeC(0)
+        b.writeC(1) // or 2
+        b.write(info.ip.getAddress) // game
+        b.writeH(info.port)
+        b.writeH(0)
+      })
 
       var size = (blocks map (_.length)).sum
       size += 2 // server count size

@@ -24,8 +24,7 @@ package bns.lobby.network.message
 
 import bns.common.network.{EmptyClientMessage, BnSClientMessage}
 import bns.lobby.network.message.common.CharacterInfo
-import hexlab.morf.util.ByteArray
-import hexlab.morf.util.ByteArray.ByteArray
+import hexlab.morf.util.ByteArray._
 
 /**
  * This class ...
@@ -35,8 +34,8 @@ import hexlab.morf.util.ByteArray.ByteArray
 object cm {
 
   class Connect extends BnSClientMessage {
-    var authToken = new ByteArray.ByteArray(16)
-    var userId = new ByteArray.ByteArray(16)
+    var authToken = new ByteArray(16)
+    var userId = new ByteArray(16)
 
     def readImpl() {
       readBytes(authToken)
@@ -59,7 +58,7 @@ object cm {
   class CharacterList extends EmptyClientMessage
 
   class CreateCharacter extends BnSClientMessage {
-    var charInfo = new CharacterInfo()
+    var charInfo = new CharacterInfo
 
     def readImpl() {
       charInfo.slotUUID = readBytes(16)
