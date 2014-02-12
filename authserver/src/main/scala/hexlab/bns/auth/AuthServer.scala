@@ -23,7 +23,7 @@
 package hexlab.bns.auth
 
 import hexlab.bns.auth.config.ConfigMarker
-import hexlab.morf.util.ConfigUtil
+import hexlab.morf.config.ConfigUtil
 import hexlab.morf.util.Log
 
 /**
