@@ -20,10 +20,10 @@
  *                           All rights reserved
  */
 
-package bns.handlers
+package bns.game.handlers
 
+import bns.common.scope.LobbyExecutor
 import hexlab.morf.executor.MessageHandler
-import bns.GameServerSupervisor.LobbyExecutor
 
 /**
  * This class ...

@@ -40,7 +40,11 @@
   <artifactId>lobbyserver</artifactId>
 
   <dependencies>
-
+    <dependency>
+      <groupId>hexlab.bns</groupId>
+      <artifactId>commons</artifactId>
+      <version>0.1</version>
+    </dependency>
   </dependencies>
 
 </project>

@@ -20,15 +20,15 @@
  *                           All rights reserved
  */
 
-package bns
+package bns.game
 
 import akka.actor.{ActorRef, Actor}
+import bns.common.scope.{AreaExecutor, LobbyExecutor}
+import bns.game.GameServerSupervisor.{AreaSupervisor, LobbySupervisor}
+import bns.game.handlers.AreaHandler
 import hexlab.morf.core.Supervisor
 import hexlab.morf.executor.MessageExecutor.CreateHandler
-import scala.annotation.StaticAnnotation
 import scala.collection.mutable
-import bns.GameServerSupervisor.{AreaSupervisor, LobbySupervisor}
-import bns.handlers.AreaHandler
 
 /**
  * This class ...
@@ -37,11 +37,7 @@ import bns.handlers.AreaHandler
  */
 object GameServerSupervisor {
 
-  class ExecutionScope extends StaticAnnotation
-
   // --------------------------------------------------------------------------
-
-  class LobbyExecutor extends ExecutionScope
 
   case class GetLobbyExecutor()
 
@@ -65,8 +61,6 @@ object GameServerSupervisor {
   }
 
   // --------------------------------------------------------------------------
-
-  class AreaExecutor extends ExecutionScope
 
   case class GetAreaExecutor(areaId: Int)
 

@@ -20,15 +20,13 @@
  *                           All rights reserved
  */
 
-package bns
+package bns.common.model
 
 /**
- * This class is an GameServer entry point
+ * This class ...
  *
  * @author hex1r0
  */
-object GameServer {
-  def main(args: Array[String]) {
+class Character {
 
-  }
 }
