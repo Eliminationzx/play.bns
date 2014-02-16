@@ -75,7 +75,7 @@ object AuthServer {
   }
 
   def installConfig(args: Array[String]) {
-    if ((args exists (_ == "--install-config")) || new File(configRoot).exists()) {
+    if ((args exists (_ == "--install-config")) || !new File(configRoot).exists()) {
       _log.info("Configs:  Installing")
       ConfigUtil.createAllFrom(configRoot, AuthServer.getClass, classOf[ConfigMarker].getPackage.getName)
       _log.info("Configs: Installed")
