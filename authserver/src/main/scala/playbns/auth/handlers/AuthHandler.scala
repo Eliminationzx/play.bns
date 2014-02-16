@@ -20,13 +20,13 @@
  *                           All rights reserved
  */
 
-package playbns.common.scope
-
-import hexlab.morf.core.ExecutionScope
+package playbns.auth.handlers
 
 /**
  * This class ...
  *
  * @author hex1r0
  */
-class AreaExecutor extends ExecutionScope
+class AuthHandler {
+ // TODO
+}

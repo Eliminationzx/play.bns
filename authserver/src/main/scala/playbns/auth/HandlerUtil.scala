@@ -20,13 +20,30 @@
  *                           All rights reserved
  */
 
-package playbns.common.scope
+package playbns.auth
 
 import hexlab.morf.core.ExecutionScope
+import hexlab.morf.executor.MessageHandler
+import hexlab.morf.util.Reflection._
 
 /**
  * This class ...
  *
  * @author hex1r0
  */
-class AreaExecutor extends ExecutionScope
+object HandlerUtil {
+  def loadAllFrom(parent: Class[_], packageName: String): Stream[(Class[ExecutionScope], Class[MessageHandler])] = {
+    val m = scala.reflect.runtime.universe.runtimeMirror(HandlerUtil.getClass.getClassLoader)
+    val all = parsePackage(parent, packageName) map {
+      case clazz if clazz.isAssignableFrom(classOf[MessageHandler]) =>
+        findClassAnnotation[ExecutionScope](m, clazz) map {
+          a =>
+            (a.getClass.asInstanceOf[Class[ExecutionScope]], clazz.asInstanceOf[Class[MessageHandler]])
+        }
+
+      case _ => None
+    }
+
+    all.flatten
+  }
+}

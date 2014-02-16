@@ -22,9 +22,14 @@
 
 package playbns.auth
 
+import akka.actor.{Props, ActorSystem}
 import hexlab.morf.config.ConfigUtil
+import hexlab.morf.executor.MessageExecutor.{RegisterData, RegisterConfig, RegisterHandler}
 import hexlab.morf.util.Log
-import playbns.auth.config.ConfigMarker
+import java.io.File
+import playbns.auth.config.{MainConfig, ConfigMarker}
+import playbns.auth.handlers.HandlerMarker
+import playbns.auth.network.NetworkServer
 
 /**
  * This class is an AuthServer entry point
@@ -34,29 +39,55 @@ import playbns.auth.config.ConfigMarker
 object AuthServer {
   private val _log = Log[AuthServer.type]
 
+  val configRoot = "config"
+  val systemName = "MORF-BNS-AuthServer"
+
   def main(args: Array[String]) {
-    val installConf = args exists (_ == "--install-config")
-    val installDb = args exists (_ == "--install-db")
+    installConfig(args)
+    installDatabase(args)
 
-    if (installConf) {
-      _log.info("Installing configs")
-      ConfigUtil.createAllFrom("config", AuthServer.getClass, classOf[ConfigMarker].getPackage.getName)
-      _log.info("Installing configs finished")
-      sys.exit(0)
+    // load configuration classes
+    val configs = ConfigUtil.loadAllFrom(configRoot, AuthServer.getClass, classOf[ConfigMarker].getPackage.getName)
+
+    // try to resolve main config
+    val mainConfig = configs.find(_.isInstanceOf[MainConfig]).get.asInstanceOf[MainConfig]
+
+    // load datapack
+    // TODO
+    val datapack = List().toStream
+
+    // load handlers
+    val handlerClasses = HandlerUtil.loadAllFrom(AuthServer.getClass, classOf[HandlerMarker].getPackage.getName)
+
+    // create system
+    val system = ActorSystem.create(systemName)
+
+    // create supervisor
+    val supervisor = system.actorOf(Props(classOf[AuthServerSupervisor]), ActorNameFactory.makeSupervisorName(mainConfig.CLIENT_PORT))
+
+    configs foreach (config => supervisor ! RegisterConfig(config))
+    datapack foreach (data => supervisor ! RegisterData(data))
+    handlerClasses foreach { case (annot, clazz) => supervisor ! RegisterHandler(annot, clazz) }
+
+    // create network
+    system.actorOf(Props(classOf[NetworkServer], mainConfig.CLIENT_PORT),
+      ActorNameFactory.makeNetworkServerName(mainConfig.CLIENT_PORT))
+  }
+
+  def installConfig(args: Array[String]) {
+    if ((args exists (_ == "--install-config")) || new File(configRoot).exists()) {
+      _log.info("Configs:  Installing")
+      ConfigUtil.createAllFrom(configRoot, AuthServer.getClass, classOf[ConfigMarker].getPackage.getName)
+      _log.info("Configs: Installed")
     }
+  }
 
-    if (installDb) {
-      _log.info("Installing database")
+  def installDatabase(args: Array[String]) {
+    if (args exists (_ == "--install-db")) {
+      _log.info("Database: Installing")
       // TODO
-      _log.info("Installing database finished")
-      sys.exit(0)
+      _log.info("Database: Installed")
     }
 
-    val configs = ConfigUtil.loadAllFrom("config", AuthServer.getClass, classOf[ConfigMarker].getPackage.getName)
-    // TODO load database
-    // TODO create actor system
-    // TODO broadcast configs
-    // TODO load modules
-    // TODO start netork
   }
 }

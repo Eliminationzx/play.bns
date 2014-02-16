@@ -20,13 +20,45 @@
  *                           All rights reserved
  */
 
-package playbns.common.scope
+package playbns.auth
 
-import hexlab.morf.core.ExecutionScope
+import akka.actor.{ActorRef, Actor}
+import hexlab.morf.core.Supervisor
+import hexlab.morf.executor.MessageExecutor.CreateHandler
+import playbns.common.scope.AuthExecutor
 
 /**
  * This class ...
  *
  * @author hex1r0
  */
-class AreaExecutor extends ExecutionScope
+class AuthServerSupervisor extends Supervisor with AuthSupervisor {
+  override def receive: Actor.Receive = {
+    super[Supervisor].receive orElse
+      super[AuthSupervisor].receive
+  }
+}
+
+private trait AuthSupervisor extends Supervisor {
+
+  var authExecutor: Option[ActorRef] = None
+
+  override def receive: Actor.Receive = {
+    case GetAuthExecutor() =>
+      if (authExecutor.isEmpty)
+        authExecutor = Some(newAuthExecutor)
+
+      sender ! authExecutor
+  }
+
+  def newAuthExecutor = {
+    val executor = actorOf(name[AuthExecutor])
+
+    handlersOf[AuthExecutor] foreach (clazz => executor ! CreateHandler(clazz, Seq.empty))
+
+    save(executor)
+  }
+
+}
+
+case class GetAuthExecutor()

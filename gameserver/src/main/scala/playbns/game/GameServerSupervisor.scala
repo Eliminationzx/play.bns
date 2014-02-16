@@ -80,7 +80,7 @@ object GameServerSupervisor {
       for (handlerClazzList <- handlers.get(classOf[AreaExecutor])) {
         handlerClazzList foreach (handlerClazz => {
           val params: Seq[Any] = handlerClazz match {
-            case x if x == classOf[AreaHandler] => Seq(areaId)
+            case x if x.isAssignableFrom(classOf[AreaHandler]) => Seq(areaId)
             case _ => Seq()
           }
 

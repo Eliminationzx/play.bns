@@ -20,13 +20,17 @@
  *                           All rights reserved
  */
 
-package playbns.common.scope
+package playbns.auth
 
-import scala.annotation.StaticAnnotation
+import playbns.auth.network.NetworkServer
 
 /**
  * This class ...
  *
  * @author hex1r0
  */
-class ExecutionScope extends StaticAnnotation
+object ActorNameFactory {
+  def makeSupervisorName(port: Int): String = classOf[AuthServerSupervisor].getSimpleName + "-" + port
+  def makeNetworkServerName(port: Int): String = classOf[NetworkServer].getSimpleName + "-" + port
+
+}
