@@ -20,13 +20,20 @@
  *                           All rights reserved
  */
 
-package playbns.common.network
+package playbns.auth.network
+
+import akka.actor.IO.SocketHandle
+import akka.actor.{Props, ActorRef, ActorContext}
+import hexlab.morf.network.MMOServer
+import playbns.common.network.AuthConnection
 
 /**
  * This class ...
  *
  * @author hex1r0
  */
-class AuthConnection {
-
+class NetworkServer(port: Int) extends MMOServer[AuthConnection](port) {
+  override def newActorRef(context: ActorContext, socket: SocketHandle): ActorRef = {
+    context.actorOf(Props(classOf[AuthConnection], socket))
+  }
 }

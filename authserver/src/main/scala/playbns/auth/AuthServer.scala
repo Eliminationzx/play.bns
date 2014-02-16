@@ -22,9 +22,9 @@
 
 package playbns.auth
 
-import hexlab.bns.auth.config.ConfigMarker
 import hexlab.morf.config.ConfigUtil
 import hexlab.morf.util.Log
+import playbns.auth.config.ConfigMarker
 
 /**
  * This class is an AuthServer entry point
