@@ -37,8 +37,8 @@ Disclaimer
 ========
 
 
-                               Blade & Soul® is registered trademark of NCsoft Corporation.
-                  Blade & Soul® content and materials are registered trademarks of the NCsoft Corporation. 
-                                               All rights reserved. 
-                                    This projects is not affiliated with NCsoft.
+                            Blade & Soul® is registered trademark of NCsoft Corporation.
+               Blade & Soul® content and materials are registered trademarks of the NCsoft Corporation. 
+                                            All rights reserved. 
+                                 This projects is not affiliated with NCsoft.
 
