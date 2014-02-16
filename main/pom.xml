@@ -38,7 +38,7 @@
   <repositories>
     <repository>
       <id>M.O.R.F.-mvn-repo</id>
-      <url>https://raw.github.com/hexlab-maven/M.O.R.F./mvn-repo/</url>
+      <url>https://raw.github.com/HeXLaB/M.O.R.F./mvn-repo/</url>
       <snapshots>
         <enabled>true</enabled>
         <updatePolicy>always</updatePolicy>

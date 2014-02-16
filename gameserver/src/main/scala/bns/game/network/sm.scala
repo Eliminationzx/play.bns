@@ -1,0 +1,98 @@
+/*
+ * This file is part of PlayBnS
+ *                      <https://github.com/HeXLaB/play.bns>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, see <http://www.gnu.org/licenses/>.
+ *
+ * Copyright (c) 2013-2014
+ *               HeXLaB Team
+ *                           All rights reserved
+ */
+
+package bns.game.network
+
+import bns.common.network.BnSServerMessage
+
+/**
+ * This class ...
+ *
+ * @author hex1r0
+ */
+object sm {
+  class Unknown_0012 extends BnSServerMessage {
+    def writeImpl() {
+      write("01ffffffff00000000000000")
+    }
+  }
+
+  class Unknown_001a extends BnSServerMessage {
+    def writeImpl() {
+      write("1c00862d000000000100de7ae7eb0128120000001c021c0001020301000a08020c2108100821030101030704090100320000000000056439000a1313ba2d46d3e7e22814e714cee705f12305e7d3d8ceec0a05e7ddd3a6f114fb0000f1ce00ec0000f1f1e200d800c400ce00e200ce00f10000d89c000005004700610069006b006100da0700008acf04d0acfd6a000a7b4e000000000000000000000000000000ba010000f2040000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001ef40000ea140000281018000000000000000000000000000000000000000000000000000d00d0fb0100d0fb0100000000000102000000000000570be052000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ba010000000000000a003e00000002000000000000000000000000000000000010000000000000000000e2041900000000000000000000000000110000000000000000002c0100000000000006000a00000000001000000000000000000000000000000000000000000000000000000000000000000000000000e803e80300000000e8030000000000000000000000000000000000000000000000000000e80300000000000000000000000000cd4f09000100000000b2e20d0000000000c6e20d0000000000000000000000000000001000273e36cb0616914c04d46bc0e2c824140000090004030040001e00000001000000005c3b8a0000000000")
+    }
+  }
+
+  class Unknown_0146 extends BnSServerMessage {
+    def writeImpl() {
+      write("59dce05200000000")
+    }
+  }
+
+  class Unknown_0023 extends BnSServerMessage {
+    def writeImpl() {
+      write("11080000000010000300da0700008b30a500070010002d277c20f71ce4536409c3088df01d048acf04d0acfd6a0002000000")
+    }
+  }
+
+  class Unknown_021a extends BnSServerMessage {
+    def writeImpl() {
+      write("00000000")
+    }
+  }
+
+  class Unknown_0223 extends BnSServerMessage {
+    def writeImpl() {
+      write("1f00000001000000000000000014000000000000000000000000000000000000000000")
+    }
+  }
+
+  class Unknown_0149 extends BnSServerMessage {
+    def writeImpl() {
+      write("ae03")
+    }
+  }
+
+  class Unknown_00fb extends BnSServerMessage {
+    def writeImpl() {
+      write("280001000103280000000000000000000000950ae59d0000000000138500001385000000000000000000")
+    }
+  }
+
+  class Unknown_0282 extends BnSServerMessage {
+    def writeImpl() {
+      write("3c000000020001000000ac0d00000000000081dce05200000000003a0000000000000002000000000000000000000081dce05200000000000000000000000000")
+    }
+  }
+
+  class Unknown_0025 extends BnSServerMessage {
+    def writeImpl() {
+      write("0000000000000000")
+    }
+  }
+
+  class Unknown_0001 extends BnSServerMessage {
+    def writeImpl() {
+      write("85000000110800000000100000000100862d000000000100001c0001020301000a08020c2108100821030101030704090100320000000000056439000a1313ba2d46d3e7e22814e714cee705f12305e7d3d8ceec0a05e7ddd3a6f114fb0000f1ce00ec0000f1f1e200d800c400ce00e200ce00f10000d89c000005004700610069006b006100000000")
+    }
+  }
+}

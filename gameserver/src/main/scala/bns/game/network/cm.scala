@@ -20,52 +20,48 @@
  *                           All rights reserved
  */
 
-package bns.game.handlers
+package bns.game.network
 
-import bns.common.scope.AreaExecutor
-import bns.game.network.cm
-import hexlab.morf.executor.MessageHandler
+import bns.common.network.{BnSClientMessage, EmptyClientMessage}
 
 /**
  * This class ...
  *
  * @author hex1r0
  */
-@AreaExecutor
-class AreaHandler(areaId: Int) extends MessageHandler {
-  def init() {
-    bind[cm.Ping](onPing)
-    bind[cm.Unknown_0011](onUnknown_0011)
-    bind[cm.Unknown_0019](onUnknown_0019)
-    bind[cm.Unknown_0024](onUnknown_0024)
-    bind[cm.Unknown_0147](onUnknown_0147)
-    bind[cm.Unknown_0219](onUnknown_0219)
-    bind[cm.Unknown_0222](onUnknown_0222)
+object cm {
+  class Ping extends EmptyClientMessage
+
+  class Unknown_0011 extends BnSClientMessage {
+    def readImpl() {
+      // 010064d067000000000079fc340000000000
+      // 1c001462070000000000dbf3160000000000
+    }
   }
 
-  def onPing(m: cm.Ping) {}
-
-  def onUnknown_0011(m: cm.Unknown_0011) {
-
+  class Unknown_0019 extends BnSClientMessage {
+    def readImpl() {
+      // 0000000000
+    }
   }
 
-  def onUnknown_0019(m: cm.Unknown_0019) {
-
+  class Unknown_0024 extends BnSClientMessage {
+    def readImpl() {
+      // 8b30a5000000000000000000
+    }
   }
 
-  def onUnknown_0024(m: cm.Unknown_0024) {
+  class Unknown_0147 extends EmptyClientMessage
 
+  class Unknown_0219 extends BnSClientMessage {
+    def readImpl() {
+      // 0000000000
+    }
   }
 
-  def onUnknown_0147(m: cm.Unknown_0147) {
-
-  }
-
-  def onUnknown_0219(m: cm.Unknown_0219) {
-
-  }
-
-  def onUnknown_0222(m: cm.Unknown_0222) {
-
+  class Unknown_0222 extends BnSClientMessage {
+    def readImpl() {
+      // 0100000000
+    }
   }
 }

@@ -20,19 +20,13 @@
  *                           All rights reserved
  */
 
-package bns.game.handlers
-
-import bns.common.scope.LobbyExecutor
-import hexlab.morf.executor.MessageHandler
+package bns.game.network
 
 /**
  * This class ...
  *
  * @author hex1r0
  */
-@LobbyExecutor
-class LobbyHandler extends MessageHandler {
-  def init() {
+object registry {
 
-  }
 }
