@@ -28,12 +28,10 @@
   <modelVersion>4.0.0</modelVersion>
   <url>https://github.com/HeXLaB/play.bns</url>
   <packaging>pom</packaging>
-
-  <groupId>hexlab.bns</groupId>
-  <artifactId>main</artifactId>
-  <version>0.1</version>
-
   <name>${project.artifactId}-${project.version}</name>
+  <groupId>hexlab.playbns</groupId>
+  <artifactId>main</artifactId>
+  <version>0.1-SNAPSHOT</version>
 
   <repositories>
     <repository>
@@ -94,15 +92,17 @@
       <version>3.0</version>
     </dependency>
     <dependency>
-      <groupId>hexlab.morf</groupId>
+      <groupId>hexlab</groupId>
       <artifactId>morf</artifactId>
       <version>0.2-SNAPSHOT</version>
     </dependency>
   </dependencies>
+
   <modules>
     <module>../commons</module>
     <module>../authserver</module>
     <module>../lobbyserver</module>
     <module>../gameserver</module>
   </modules>
+
 </project>

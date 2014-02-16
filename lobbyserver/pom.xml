@@ -28,22 +28,21 @@
   <modelVersion>4.0.0</modelVersion>
   <url>https://github.com/HeXLaB/play.bns</url>
   <packaging>jar</packaging>
+  <name>${project.artifactId}-${project.version}</name>
+  <artifactId>lobbyserver</artifactId>
 
   <parent>
-    <groupId>hexlab.bns</groupId>
+    <groupId>hexlab.playbns</groupId>
     <artifactId>main</artifactId>
-    <version>0.1</version>
+    <version>0.1-SNAPSHOT</version>
     <relativePath>../main/pom.xml</relativePath>
   </parent>
-  <name>${project.artifactId}-${project.version}</name>
-
-  <artifactId>lobbyserver</artifactId>
 
   <dependencies>
     <dependency>
-      <groupId>hexlab.bns</groupId>
+      <groupId>hexlab.playbns</groupId>
       <artifactId>commons</artifactId>
-      <version>0.1</version>
+      <version>${project.version}</version>
     </dependency>
   </dependencies>
 

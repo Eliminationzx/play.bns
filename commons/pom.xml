@@ -28,19 +28,15 @@
   <modelVersion>4.0.0</modelVersion>
   <url>https://github.com/HeXLaB/play.bns</url>
   <packaging>jar</packaging>
-
-  <parent>
-    <groupId>hexlab.bns</groupId>
-    <artifactId>main</artifactId>
-    <version>0.1</version>
-    <relativePath>../main/pom.xml</relativePath>
-  </parent>
   <name>${project.artifactId}-${project.version}</name>
-
   <artifactId>commons</artifactId>
 
-  <dependencies>
+  <parent>
+    <groupId>hexlab.playbns</groupId>
+    <artifactId>main</artifactId>
+    <version>0.1-SNAPSHOT</version>
+    <relativePath>../main/pom.xml</relativePath>
+  </parent>
 
-  </dependencies>
-
+  <dependencies/>
 </project>
