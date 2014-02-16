@@ -25,7 +25,6 @@ package playbns.auth.network
 import akka.actor.IO.SocketHandle
 import akka.actor.{Props, ActorRef, ActorContext}
 import hexlab.morf.network.MMOServer
-import playbns.common.network.AuthConnection
 
 /**
  * This class ...
