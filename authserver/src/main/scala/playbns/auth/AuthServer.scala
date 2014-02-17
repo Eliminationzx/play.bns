@@ -75,8 +75,10 @@ object AuthServer {
   }
 
   def installConfig(args: Array[String]) {
-    if ((args exists (_ == "--install-config")) || !new File(configRoot).exists()) {
+    val configDir = new File(configRoot)
+    if ((args exists (_ == "--install-config")) || !configDir.exists()) {
       _log.info("Configs:  Installing")
+      configDir.mkdir()
       ConfigUtil.createAllFrom(configRoot, AuthServer.getClass, classOf[ConfigMarker].getPackage.getName)
       _log.info("Configs: Installed")
     }
