@@ -25,6 +25,7 @@ package playbns.auth
 import akka.actor.{ActorRef, Actor}
 import hexlab.morf.core.Supervisor
 import hexlab.morf.executor.MessageExecutor.CreateHandler
+import playbns.auth.AuthServerSupervisor.AuthSupervisor
 import playbns.common.scope.AuthExecutor
 
 /**
@@ -39,26 +40,28 @@ class AuthServerSupervisor extends Supervisor with AuthSupervisor {
   }
 }
 
-private trait AuthSupervisor extends Supervisor {
+object AuthServerSupervisor {
+  private[AuthServerSupervisor] trait AuthSupervisor extends Supervisor {
 
-  var authExecutor: Option[ActorRef] = None
+    var authExecutor: Option[ActorRef] = None
 
-  override def receive: Actor.Receive = {
-    case GetAuthExecutor() =>
-      if (authExecutor.isEmpty)
-        authExecutor = Some(newAuthExecutor)
+    override def receive: Actor.Receive = {
+      case GetAuthExecutor() =>
+        if (authExecutor.isEmpty)
+          authExecutor = Some(newAuthExecutor)
 
-      sender ! authExecutor
+        sender ! authExecutor
+    }
+
+    def newAuthExecutor = {
+      val executor = actorOf(name[AuthExecutor])
+
+      handlersOf[AuthExecutor] foreach (clazz => executor ! CreateHandler(clazz, Seq.empty))
+
+      save(executor)
+    }
+
   }
-
-  def newAuthExecutor = {
-    val executor = actorOf(name[AuthExecutor])
-
-    handlersOf[AuthExecutor] foreach (clazz => executor ! CreateHandler(clazz, Seq.empty))
-
-    save(executor)
-  }
-
 }
 
 case class GetAuthExecutor()

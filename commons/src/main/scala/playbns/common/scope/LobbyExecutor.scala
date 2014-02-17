@@ -22,6 +22,8 @@
 
 package playbns.common.scope
 
+import hexlab.morf.core.ExecutionScope
+
 /**
  * This class ...
  *

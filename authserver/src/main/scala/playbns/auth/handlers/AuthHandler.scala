@@ -28,5 +28,5 @@ package playbns.auth.handlers
  * @author hex1r0
  */
 class AuthHandler {
- // TODO
+ // TODO all message-related stuff from AuthClientConnection will go here later
 }
