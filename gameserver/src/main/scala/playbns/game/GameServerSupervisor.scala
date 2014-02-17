@@ -23,11 +23,12 @@
 package playbns.game
 
 import akka.actor.{ActorRef, Actor}
+import hexlab.morf.core.Supervisor
+import hexlab.morf.executor.MessageExecutor.CreateHandler
+import hexlab.morf.util.ClassUtil.ClassExt
 import playbns.common.scope.{AreaExecutor, LobbyExecutor}
 import playbns.game.GameServerSupervisor.{AreaSupervisor, LobbySupervisor}
 import playbns.game.handlers.AreaHandler
-import hexlab.morf.core.Supervisor
-import hexlab.morf.executor.MessageExecutor.CreateHandler
 import scala.collection.mutable
 
 /**
@@ -80,7 +81,7 @@ object GameServerSupervisor {
       for (handlerClazzList <- handlers.get(classOf[AreaExecutor])) {
         handlerClazzList foreach (handlerClazz => {
           val params: Seq[Any] = handlerClazz match {
-            case x if x.isAssignableFrom(classOf[AreaHandler]) => Seq(areaId)
+            case x if x.isChildOf[AreaHandler] => Seq(areaId)
             case _ => Seq()
           }
 

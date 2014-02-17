@@ -22,8 +22,8 @@
 
 package playbns.auth.handlers
 
-import playbns.common.scope.AuthExecutor
 import hexlab.morf.executor.MessageHandler
+import playbns.common.scope.AuthExecutor
 
 /**
  * This class ...
@@ -32,8 +32,7 @@ import hexlab.morf.executor.MessageHandler
  */
 @AuthExecutor
 class AuthHandler extends MessageHandler {
- // TODO all message-related stuff from AuthClientConnection will go here later
+  // TODO all message-related stuff from AuthClientConnection will go here later
   def init() {
-
- }
+  }
 }

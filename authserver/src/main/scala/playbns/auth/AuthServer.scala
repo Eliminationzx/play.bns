@@ -52,6 +52,8 @@ object AuthServer {
     // try to resolve main config
     val mainConfig = configs.find(_.isInstanceOf[MainConfig]).get.asInstanceOf[MainConfig]
 
+    val port = mainConfig.CLIENT_PORT
+
     // load datapack
     // TODO
     val datapack = List().toStream
@@ -63,15 +65,15 @@ object AuthServer {
     val system = ActorSystem.create(systemName)
 
     // create supervisor
-    val supervisor = system.actorOf(Props(classOf[AuthServerSupervisor]), ActorNameFactory.makeSupervisorName(mainConfig.CLIENT_PORT))
+    val supervisor = system.actorOf(Props(classOf[AuthServerSupervisor]), ActorNameFactory.makeSupervisorName(port))
 
+    // register everything
     configs foreach (config => supervisor ! RegisterConfig(config))
     datapack foreach (data => supervisor ! RegisterData(data))
     handlerClasses foreach { case (annot, clazz) => supervisor ! RegisterHandler(annot, clazz) }
 
     // create network
-    system.actorOf(Props(classOf[NetworkServer], mainConfig.CLIENT_PORT),
-      ActorNameFactory.makeNetworkServerName(mainConfig.CLIENT_PORT))
+    system.actorOf(Props(classOf[NetworkServer], port), ActorNameFactory.makeNetworkServerName(port))
   }
 
   def installConfig(args: Array[String]) {
