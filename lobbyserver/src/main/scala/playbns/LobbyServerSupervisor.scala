@@ -20,58 +20,48 @@
  *                           All rights reserved
  */
 
-package playbns.game
+package playbns
 
 import akka.actor.{ActorRef, Actor}
 import hexlab.morf.core.Supervisor
 import hexlab.morf.executor.MessageExecutor.CreateHandler
-import hexlab.morf.util.ClassUtil.ClassExt
-import playbns.common.scope.AreaExecutor
-import playbns.game.GameServerSupervisor.AreaSupervisor
-import playbns.game.handlers.AreaHandler
-import scala.collection.mutable
+import playbns.LobbyServerSupervisor.LobbySupervisor
+import playbns.common.scope.LobbyExecutor
 
 /**
  * This class ...
  *
  * @author hex1r0
  */
-class GameServerSupervisor extends Supervisor with AreaSupervisor {
+class LobbyServerSupervisor extends Supervisor with LobbySupervisor {
   override def receive: Actor.Receive = {
     super[Supervisor].receive orElse
-      super[AreaSupervisor].receive
+      super[LobbySupervisor].receive
   }
 }
 
-object GameServerSupervisor {
-  private[GameServerSupervisor] trait AreaSupervisor extends Supervisor {
+object LobbyServerSupervisor {
+  private[LobbyServerSupervisor] trait LobbySupervisor extends Supervisor {
 
-    val areaExecutors = new mutable.HashMap[Int, ActorRef]
+    var lobbyExecutor: Option[ActorRef] = None
 
     override def receive: Actor.Receive = {
-      case GetAreaExecutor(areaId) =>
-        val ref = areaExecutors.getOrElseUpdate(areaId, newAreaExecutor(areaId))
-        sender ! ref
+      case GetLobbyExecutor() =>
+        if (lobbyExecutor.isEmpty)
+          lobbyExecutor = Some(newLobbyExecutor)
+
+        sender ! lobbyExecutor
     }
 
-    def newAreaExecutor(areaId: Int) = {
-      val ref = actorOf(name[AreaExecutor] + "-" + areaId)
+    def newLobbyExecutor = {
+      val executor = actorOf(name[LobbyExecutor])
 
-      for (handlerClazzList <- _handlers.get(classOf[AreaExecutor])) {
-        handlerClazzList foreach (handlerClazz => {
-          val params: Seq[Any] = handlerClazz match {
-            case x if x.isChildOf[AreaHandler] => Seq(areaId)
-            case _ => Seq()
-          }
+      handlersOf[LobbyExecutor] foreach (clazz => executor ! CreateHandler(clazz, Seq.empty))
 
-          ref ! CreateHandler(handlerClazz, params)
-        })
-      }
-
-      save(ref)
+      save(executor)
     }
 
   }
 }
 
-case class GetAreaExecutor(areaId: Int)
+case class GetLobbyExecutor()

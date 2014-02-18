@@ -20,7 +20,7 @@
  *                           All rights reserved
  */
 
-package playbns.auth
+package playbns.common
 
 import hexlab.morf.core.ExecutionScope
 import hexlab.morf.executor.MessageHandler

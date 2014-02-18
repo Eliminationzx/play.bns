@@ -30,6 +30,7 @@ import java.io.File
 import playbns.auth.config.{MainConfig, ConfigMarker}
 import playbns.auth.handlers.HandlerMarker
 import playbns.auth.network.NetworkServer
+import playbns.common.{HandlerUtil, ActorNameFactory}
 
 /**
  * This class is an AuthServer entry point
@@ -65,7 +66,7 @@ object AuthServer {
     val system = ActorSystem.create(systemName)
 
     // create supervisor
-    val supervisor = system.actorOf(Props(classOf[AuthServerSupervisor]), ActorNameFactory.makeSupervisorName(port))
+    val supervisor = system.actorOf(Props(classOf[AuthServerSupervisor]), ActorNameFactory.makeSupervisorName[AuthServerSupervisor](port))
 
     // register everything
     configs foreach (config => supervisor ! RegisterConfig(config))
@@ -73,7 +74,7 @@ object AuthServer {
     handlerClasses foreach { case (annot, clazz) => supervisor ! RegisterHandler(annot, clazz) }
 
     // create network
-    system.actorOf(Props(classOf[NetworkServer], port), ActorNameFactory.makeNetworkServerName(port))
+    system.actorOf(Props(classOf[NetworkServer], port), ActorNameFactory.makeNetworkServerName[NetworkServer](port))
   }
 
   def installConfig(args: Array[String]) {

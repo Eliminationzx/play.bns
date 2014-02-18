@@ -20,17 +20,18 @@
  *                           All rights reserved
  */
 
-package playbns.auth
+package playbns.lobby.network
 
-import playbns.auth.network.NetworkServer
+import akka.actor.Actor
+import akka.actor.IO.{Iteratee, SocketHandle}
+import hexlab.morf.network.MMOClientConnection
 
 /**
  * This class ...
  *
  * @author hex1r0
  */
-object ActorNameFactory {
-  def makeSupervisorName(port: Int): String = classOf[AuthServerSupervisor].getSimpleName + "-" + port
-  def makeNetworkServerName(port: Int): String = classOf[NetworkServer].getSimpleName + "-" + port
-
+class LobbyConnection(socket: SocketHandle) extends MMOClientConnection(socket) {
+  override def receive: Actor.Receive = ???
+  def parseCP: Iteratee[Unit] = ???
 }
