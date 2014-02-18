@@ -27,9 +27,9 @@ import hexlab.morf.config.ConfigUtil
 import hexlab.morf.executor.MessageExecutor.{RegisterHandler, RegisterData, RegisterConfig}
 import hexlab.morf.util.Log
 import java.io.File
+import playbns.common.{HandlerUtil, ActorNameFactory}
 import playbns.lobby.config.{ConfigMarker, MainConfig}
 import playbns.lobby.handlers.HandlerMarker
-import playbns.common.{HandlerUtil, ActorNameFactory}
 import playbns.lobby.network.NetworkServer
 
 /**

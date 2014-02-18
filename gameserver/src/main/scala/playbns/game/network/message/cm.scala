@@ -20,13 +20,48 @@
  *                           All rights reserved
  */
 
-package playbns.game.network
+package playbns.game.network.message
+
+import playbns.common.network.{BnSClientMessage, EmptyClientMessage}
 
 /**
  * This class ...
  *
  * @author hex1r0
  */
-object registry {
+object cm {
+  class Ping extends EmptyClientMessage
 
+  class Unknown_0011 extends BnSClientMessage {
+    def readImpl() {
+      // 010064d067000000000079fc340000000000
+      // 1c001462070000000000dbf3160000000000
+    }
+  }
+
+  class Unknown_0019 extends BnSClientMessage {
+    def readImpl() {
+      // 0000000000
+    }
+  }
+
+  class Unknown_0024 extends BnSClientMessage {
+    def readImpl() {
+      // 8b30a5000000000000000000
+    }
+  }
+
+  class Unknown_0147 extends EmptyClientMessage
+
+  class Unknown_0219 extends BnSClientMessage {
+    def readImpl() {
+      // 0000000000
+    }
+  }
+
+  class Unknown_0222 extends BnSClientMessage {
+    def readImpl() {
+      // 0100000000
+    }
+  }
 }

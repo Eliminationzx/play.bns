@@ -22,8 +22,8 @@
 
 package playbns.lobby.network.message
 
-import playbns.common.network.{BnSServerMessage, BnSClientMessage}
 import hexlab.morf.util.Erasure
+import playbns.common.network.{BnSServerMessage, BnSClientMessage}
 import scala.collection.mutable
 import scala.reflect.ClassTag
 

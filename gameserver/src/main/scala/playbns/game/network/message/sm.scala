@@ -20,7 +20,7 @@
  *                           All rights reserved
  */
 
-package playbns.game.network
+package playbns.game.network.message
 
 import playbns.common.network.BnSServerMessage
 

@@ -20,7 +20,7 @@
  *                           All rights reserved
  */
 
-package playbns.auth.network
+package playbns.auth.network.message
 
 import hexlab.morf.network.ClientMessage
 

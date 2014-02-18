@@ -20,7 +20,7 @@
  *                           All rights reserved
  */
 
-package playbns.lobby.config
+package playbns.game.config
 
 import hexlab.morf.config.{Config, ConfigProperty}
 import java.net.InetAddress
@@ -38,7 +38,7 @@ class MainConfig {
   var CLIENT_HOST: InetAddress = _
 
   @ConfigProperty("authserver.network.client.port",
-    10900,
+    10100,
     "Port that will be used to listen for client connections")
   var CLIENT_PORT: Int = _
 

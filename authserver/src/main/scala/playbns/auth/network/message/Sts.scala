@@ -20,7 +20,7 @@
  *                           All rights reserved
  */
 
-package playbns.auth.network
+package playbns.auth.network.message
 
 import akka.actor.IO
 import akka.util.ByteString

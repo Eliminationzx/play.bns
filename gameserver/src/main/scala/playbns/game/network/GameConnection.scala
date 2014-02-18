@@ -22,11 +22,16 @@
 
 package playbns.game.network
 
+import akka.actor.Actor
+import akka.actor.IO.{Iteratee, SocketHandle}
+import hexlab.morf.network.MMOClientConnection
+
 /**
  * This class ...
  *
  * @author hex1r0
  */
-object common {
-
+class GameConnection(socket: SocketHandle) extends MMOClientConnection(socket) {
+  override def receive: Actor.Receive = ???
+  def parseCP: Iteratee[Unit] = ???
 }

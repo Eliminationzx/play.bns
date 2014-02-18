@@ -24,9 +24,9 @@ package playbns.common.network
 
 import akka.actor.ActorRef
 import akka.util.ByteString
+import hexlab.morf.network.ClientMessage
 import playbns.common.model.{User, Account, Character}
 import playbns.common.util.BnSBinaryReader
-import hexlab.morf.network.ClientMessage
 
 /**
  * This class ...

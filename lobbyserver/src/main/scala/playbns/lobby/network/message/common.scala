@@ -22,10 +22,10 @@
 
 package playbns.lobby.network.message
 
-import playbns.common.util.BnSBinaryWriter
 import hexlab.morf.network.ServerMessage
 import hexlab.morf.util.ByteArray._
 import java.net.InetAddress
+import playbns.common.util.BnSBinaryWriter
 
 /**
  * This class ...

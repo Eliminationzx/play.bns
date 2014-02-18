@@ -22,8 +22,8 @@
 
 package playbns.common.network
 
-import playbns.common.util.BnSBinaryWriter
 import hexlab.morf.network.ServerMessage
+import playbns.common.util.BnSBinaryWriter
 
 /**
  * This class ...

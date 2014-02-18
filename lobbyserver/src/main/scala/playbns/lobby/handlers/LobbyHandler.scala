@@ -23,11 +23,11 @@
 package playbns.lobby.handlers
 
 import akka.util.ByteString
-import playbns.common.scope.LobbyExecutor
-import playbns.lobby.network.message.{common, sm, cm}
 import hexlab.morf.executor.MessageHandler
 import hexlab.morf.util.ByteArray
 import java.net.InetAddress
+import playbns.common.scope.LobbyExecutor
+import playbns.lobby.network.message.{common, sm, cm}
 
 /**
  * This class ...

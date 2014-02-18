@@ -22,8 +22,8 @@
 
 package playbns.lobby.network.message
 
-import playbns.common.network.BnSServerMessage
 import hexlab.morf.util.ByteArray.ByteArray
+import playbns.common.network.BnSServerMessage
 
 /**
  * This class ...

@@ -31,6 +31,7 @@ import hexlab.morf.network.MMOClientConnection
 import hexlab.morf.util.{HexUtil, RC4Cipher}
 import java.util.UUID
 import scala.Some
+import playbns.auth.network.message.Sts
 
 /**
  * This class is a temporary solution and will be reworked in the future

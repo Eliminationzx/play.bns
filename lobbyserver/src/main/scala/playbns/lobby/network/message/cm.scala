@@ -22,9 +22,9 @@
 
 package playbns.lobby.network.message
 
+import hexlab.morf.util.ByteArray._
 import playbns.common.network.{EmptyClientMessage, BnSClientMessage}
 import playbns.lobby.network.message.common.CharacterInfo
-import hexlab.morf.util.ByteArray._
 
 /**
  * This class ...

@@ -22,46 +22,17 @@
 
 package playbns.game.network
 
-import playbns.common.network.{BnSClientMessage, EmptyClientMessage}
+import akka.actor.IO.SocketHandle
+import akka.actor.{Props, ActorRef, ActorContext}
+import hexlab.morf.network.MMOServer
 
 /**
  * This class ...
  *
  * @author hex1r0
  */
-object cm {
-  class Ping extends EmptyClientMessage
-
-  class Unknown_0011 extends BnSClientMessage {
-    def readImpl() {
-      // 010064d067000000000079fc340000000000
-      // 1c001462070000000000dbf3160000000000
-    }
-  }
-
-  class Unknown_0019 extends BnSClientMessage {
-    def readImpl() {
-      // 0000000000
-    }
-  }
-
-  class Unknown_0024 extends BnSClientMessage {
-    def readImpl() {
-      // 8b30a5000000000000000000
-    }
-  }
-
-  class Unknown_0147 extends EmptyClientMessage
-
-  class Unknown_0219 extends BnSClientMessage {
-    def readImpl() {
-      // 0000000000
-    }
-  }
-
-  class Unknown_0222 extends BnSClientMessage {
-    def readImpl() {
-      // 0100000000
-    }
+class NetworkServer(port: Int) extends MMOServer[GameConnection](port) {
+  override def newActorRef(context: ActorContext, socket: SocketHandle): ActorRef = {
+    context.actorOf(Props(classOf[GameConnection], socket))
   }
 }

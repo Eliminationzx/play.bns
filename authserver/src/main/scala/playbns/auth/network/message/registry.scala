@@ -20,12 +20,12 @@
  *                           All rights reserved
  */
 
-package playbns.auth.network
+package playbns.auth.network.message
 
 import hexlab.morf.util.Erasure
+import playbns.common.network.BnSClientMessage
 import scala.collection.mutable
 import scala.reflect.ClassTag
-import playbns.common.network.BnSClientMessage
 
 /**
  * This class ...
