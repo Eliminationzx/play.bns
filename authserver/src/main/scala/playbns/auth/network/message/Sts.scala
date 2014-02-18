@@ -32,6 +32,7 @@ import scala.xml.XML
  *
  * @author hex1r0
  */
+@deprecated
 object Sts {
   implicit val byteOrder = java.nio.ByteOrder.LITTLE_ENDIAN
 

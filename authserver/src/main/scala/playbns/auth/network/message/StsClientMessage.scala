@@ -25,6 +25,7 @@ package playbns.auth.network.message
 import akka.util.ByteString
 import hexlab.morf.network.ClientMessage
 import hexlab.morf.util.ByteArray._
+import playbns.common.model.User
 import playbns.common.util.BnSBinaryReader
 import scala.xml.{XML, Elem}
 
@@ -34,6 +35,7 @@ import scala.xml.{XML, Elem}
  * @author hex1r0
  */
 trait StsClientMessage extends ClientMessage {
+  var user: User = _
   var text: String = _
 
   def body: Elem = XML.loadString(text)

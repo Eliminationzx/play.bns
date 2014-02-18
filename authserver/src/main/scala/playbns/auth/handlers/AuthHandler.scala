@@ -23,6 +23,7 @@
 package playbns.auth.handlers
 
 import hexlab.morf.executor.MessageHandler
+import playbns.auth.network.message.cm
 import playbns.common.scope.AuthExecutor
 
 /**
@@ -32,7 +33,53 @@ import playbns.common.scope.AuthExecutor
  */
 @AuthExecutor
 class AuthHandler extends MessageHandler {
-  // TODO all message-related stuff from AuthClientConnection will go here later
+
   def init() {
+    bind[cm.AuthLoginStart](onAuthLoginStart)
+    bind[cm.AuthKeyData](onAuthKeyData)
+    bind[cm.AuthLoginFinish](onAuthLoginFinish)
+    bind[cm.AuthRequestToken](onAuthRequestToken)
+    bind[cm.GameAccountListMyAccounts](onGameAccountListMyAccounts)
+    bind[cm.AuthGetMyUserInfo](onAuthGetMyUserInfo)
+    bind[cm.AuthRequestGameToken](onAuthRequestGameToken)
+    bind[cm.SecondPasswordGetStatus](onSecondPasswordGetStatus)
+    bind[cm.SlotListSlots](onSlotListSlots)
   }
+
+  def onAuthLoginStart(m: cm.AuthLoginStart) {
+
+  }
+
+  def onAuthKeyData(m: cm.AuthKeyData) {
+
+  }
+
+  def onAuthLoginFinish(m: cm.AuthLoginFinish) {
+
+  }
+
+  def onAuthRequestToken(m: cm.AuthRequestToken) {
+
+  }
+
+  def onGameAccountListMyAccounts(m: cm.GameAccountListMyAccounts) {
+
+  }
+
+  def onAuthGetMyUserInfo(m: cm.AuthGetMyUserInfo) {
+
+  }
+
+  def onAuthRequestGameToken(m: cm.AuthRequestGameToken) {
+
+  }
+
+  def onSecondPasswordGetStatus(m: cm.SecondPasswordGetStatus) {
+
+  }
+
+  def onSlotListSlots(m: cm.SlotListSlots) {
+
+  }
+
 }
