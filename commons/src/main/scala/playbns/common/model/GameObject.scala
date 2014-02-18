@@ -27,7 +27,6 @@ package playbns.common.model
  *
  * @author hex1r0
  */
-class User {
-  var activeAccount: Account = _
-  var activeChar: Character = _
+class GameObject(val uid: Int) {
+
 }

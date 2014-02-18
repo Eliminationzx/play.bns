@@ -27,6 +27,6 @@ package playbns.common.model
  *
  * @author hex1r0
  */
-class Character {
+class Character(override val uid: Int) extends Creature(uid) {
 
 }

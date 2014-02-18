@@ -27,7 +27,6 @@ import akka.actor.IO.{Iteratee, SocketHandle}
 import akka.util.ByteString
 import hexlab.morf.network.MMOClientConnection
 import hexlab.morf.util.ByteArray.ByteArray
-import hexlab.morf.util.Log
 import playbns.common.crypto.BnsAESCipher
 import playbns.common.network.protocol.BnsBin
 import scala.collection.mutable
@@ -39,9 +38,8 @@ import scala.collection.mutable
  */
 class AuthedConnection(socket: SocketHandle, key: ByteArray, handshake: ByteArray) extends MMOClientConnection(socket) {
 
-  val _log = Log[AuthedConnection]
-
   val ciphers = new mutable.HashMap[Int, BnsAESCipher]
+  var _onRequest: (BnsBin.Frame) => Unit = onHandshake
 
   def decode(frame: BnsBin.Frame) = ciphers.get(frame.header.cipherId) match {
     case Some(c) => ByteString(c.decode(frame.body.toArray))
@@ -58,12 +56,17 @@ class AuthedConnection(socket: SocketHandle, key: ByteArray, handshake: ByteArra
       for {
         frame <- BnsBin.parse
       } yield {
-        onRequest(frame)
+        _onRequest(frame)
       }
     }
   }
 
-  def onRequest(frame: BnsBin.Frame) {
-    _log.info(frame.toString)
+  def onHandshake(frame: BnsBin.Frame) {
+    // TODO
+    _onRequest = onMessage
+  }
+
+  def onMessage(frame: BnsBin.Frame) {
+    log.info(frame.toString)
   }
 }

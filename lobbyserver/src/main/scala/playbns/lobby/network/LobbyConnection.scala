@@ -22,16 +22,16 @@
 
 package playbns.lobby.network
 
-import akka.actor.Actor
-import akka.actor.IO.{Iteratee, SocketHandle}
-import hexlab.morf.network.MMOClientConnection
+import akka.actor.IO.SocketHandle
+import hexlab.morf.util.ByteArray._
+import playbns.common.network.AuthedConnection
 
 /**
  * This class ...
  *
  * @author hex1r0
  */
-class LobbyConnection(socket: SocketHandle) extends MMOClientConnection(socket) {
-  override def receive: Actor.Receive = ???
-  def parseCP: Iteratee[Unit] = ???
+class LobbyConnection(socket: SocketHandle, key: ByteArray, handshake: ByteArray)
+  extends AuthedConnection(socket, key, handshake) {
+
 }
