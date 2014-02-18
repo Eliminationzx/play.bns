@@ -26,7 +26,7 @@ import akka.actor.{ActorRef, Actor}
 import hexlab.morf.core.Supervisor
 import hexlab.morf.executor.MessageExecutor.CreateHandler
 import hexlab.morf.util.ClassUtil.ClassExt
-import playbns.common.scope.AreaExecutor
+import playbns.common.scope.{LobbyExecutor, AreaExecutor}
 import playbns.game.GameServerSupervisor.AreaSupervisor
 import playbns.game.handlers.AreaHandler
 import scala.collection.mutable
@@ -55,20 +55,18 @@ object GameServerSupervisor {
     }
 
     def newAreaExecutor(areaId: Int) = {
-      val ref = actorOf(name[AreaExecutor] + "-" + areaId)
+      val executor = actorOf(name[AreaExecutor] + "-" + areaId)
 
-      for (handlerClazzList <- _handlers.get(classOf[AreaExecutor])) {
-        handlerClazzList foreach (handlerClazz => {
-          val params: Seq[Any] = handlerClazz match {
-            case x if x.isChildOf[AreaHandler] => Seq(areaId)
-            case _ => Seq()
-          }
+      handlersOf[LobbyExecutor] foreach (clazz => {
+        val params: Seq[Any] = clazz match {
+          case x if x.isChildOf[AreaHandler] => Seq(areaId)
+          case _ => Seq()
+        }
 
-          ref ! CreateHandler(handlerClazz, params)
-        })
-      }
+        executor ! CreateHandler(clazz, params)
+      })
 
-      save(ref)
+      save(executor)
     }
 
   }
