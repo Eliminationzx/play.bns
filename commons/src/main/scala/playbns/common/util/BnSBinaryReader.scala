@@ -45,41 +45,41 @@ trait BnSBinaryReader extends BinaryReader {
     _it = input.iterator
   }
 
-  protected def readByte: Byte = _it.getByte
+  def readByte: Byte = _it.getByte
 
-  protected def readShort: Short = _it.getShort
+  def readShort: Short = _it.getShort
 
-  protected def readInt: Int = _it.getInt
+  def readInt: Int = _it.getInt
 
-  protected def readLong: Long = _it.getLong
+  def readLong: Long = _it.getLong
 
-  protected def readFloat: Float = _it.getFloat
+  def readFloat: Float = _it.getFloat
 
-  protected def readDouble: Double = _it.getDouble
+  def readDouble: Double = _it.getDouble
 
-  protected def readBytes(count: Int): Array[Byte] = {
+  def readBytes(count: Int): Array[Byte] = {
     val out = new Array[Byte](count)
     readBytes(out)
     out
   }
 
-  protected def readBytes(out: Array[Byte]): Unit = _it.getBytes(out)
+  def readBytes(out: Array[Byte]): Unit = _it.getBytes(out)
 
-  protected def skip(count: Int): Unit = _it.drop(count)
+  def skip(count: Int): Unit = _it.drop(count)
 
-  protected def readUtf16: String = {
+  def readUtf16: String = {
     val len = (readShort & 0xFFFF) * 2
     new String(readBytes(len), UTF_16LE)
   }
 
-  protected def readAscii: String = {
+  def readAscii: String = {
     val len = readShort & 0xFFFF
     new String(readBytes(len), US_ASCII)
   }
 
-  protected def readS = readUtf16
+  def readS = readUtf16
 
-  protected def ascii = readAscii
+  def ascii = readAscii
   
-  protected def utf16 = readUtf16
+  def utf16 = readUtf16
 }

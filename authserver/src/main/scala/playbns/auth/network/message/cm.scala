@@ -22,7 +22,8 @@
 
 package playbns.auth.network.message
 
-import hexlab.morf.network.ClientMessage
+import hexlab.morf.util.Base64
+import hexlab.morf.util.ByteArray.ByteArray
 
 /**
  * This class ...
@@ -31,86 +32,97 @@ import hexlab.morf.network.ClientMessage
  */
 object cm {
 
-  trait StsMessage extends ClientMessage {
-
+  class StsConnect extends StsClientMessage {
+    def readImpl() {
+      // ignore
+    }
   }
 
+  class StsPing extends StsClientMessage {
+    def readImpl() {
+      // ignore
+    }
+  }
 
-  class StsConnect extends StsMessage {
+  class AuthKeyData extends StsClientMessage {
+    var a: ByteArray = _
+    var m: ByteArray = _
+
+    def readImpl() {
+      val keyDataText = (body \\ "KeyData").text
+      val keyData = Base64.decode(keyDataText)
+
+      val reader = newBinaryReader(keyData)
+      a = reader.readBytes(reader.readInt)
+      m = reader.readBytes(reader.readInt)
+    }
+  }
+
+  class AuthLoginStart extends StsClientMessage {
+    var salt: ByteArray = _
+    var b: ByteArray = _
+
+    def readImpl() {
+      val keyDataText = (body \\ "KeyData").text
+      val keyData = Base64.decode(keyDataText)
+
+      val reader = newBinaryReader(keyData)
+      salt = reader.readBytes(reader.readInt)
+      b = reader.readBytes(reader.readInt)
+    }
+  }
+
+  class AuthLoginFinish extends StsClientMessage {
+    def readImpl() {
+      // ignore
+    }
+  }
+
+  class AuthLogoutMyClient extends StsClientMessage {
     def readImpl() {
 
     }
   }
 
-  class StsPing extends StsMessage {
+  class AuthRequestToken extends StsClientMessage {
     def readImpl() {
-
+      // ignore
     }
   }
 
-  class AuthKeyData extends StsMessage {
+  class AuthGetMyUserInfo extends StsClientMessage {
     def readImpl() {
-
+      // ignore
     }
   }
 
-  class AuthLoginStart extends StsMessage {
+  class AuthRequestGameToken extends StsClientMessage {
     def readImpl() {
-
+      // ignore
     }
   }
 
-  class AuthLoginFinish extends StsMessage {
+  class GameAccountListMyAccounts extends StsClientMessage {
     def readImpl() {
-
+      // ignore
     }
   }
 
-  class AuthLogoutMyClient extends StsMessage {
+  class PresenceUserInfo extends StsClientMessage {
     def readImpl() {
-
+      // ignore
     }
   }
 
-  class AuthRequestToken extends StsMessage {
+  class SecondPasswordGetStatus extends StsClientMessage {
     def readImpl() {
-
+      // ignore
     }
   }
 
-  class AuthGetMyUserInfo extends StsMessage {
+  class SlotListSlots extends StsClientMessage {
     def readImpl() {
-
-    }
-  }
-
-  class AuthRequestGameToken extends StsMessage {
-    def readImpl() {
-
-    }
-  }
-
-  class GameAccountListMyAccounts extends StsMessage {
-    def readImpl() {
-
-    }
-  }
-
-  class PresenceUserInfo extends StsMessage {
-    def readImpl() {
-
-    }
-  }
-
-  class SecondPasswordGetStatus extends StsMessage {
-    def readImpl() {
-
-    }
-  }
-
-  class SlotListSlots extends StsMessage {
-    def readImpl() {
-
+      // ignore
     }
   }
 
