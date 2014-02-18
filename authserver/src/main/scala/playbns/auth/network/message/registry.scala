@@ -55,7 +55,7 @@ object registry {
     cms += messageId -> Erasure[T]
   }
 
-  def findCM(messageId: String): Option[BnSClientMessage] = {
-    cms get messageId map (_.newInstance().asInstanceOf[BnSClientMessage])
+  def findCM(messageId: String): Option[StsClientMessage] = {
+    cms get messageId map (_.newInstance().asInstanceOf[StsClientMessage])
   }
 }
