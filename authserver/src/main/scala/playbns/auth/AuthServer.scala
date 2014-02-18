@@ -50,7 +50,7 @@ object AuthServer {
     val configs = ConfigUtil.loadAllFrom(configRoot, AuthServer.getClass, classOf[ConfigMarker].getPackage.getName)
 
     // try to resolve main config
-    val mainConfig = configs.find(_.isInstanceOf[MainConfig]).get.asInstanceOf[MainConfig]
+    val mainConfig = configs.collectFirst { case x: MainConfig => x }.get
 
     val port = mainConfig.CLIENT_PORT
 
