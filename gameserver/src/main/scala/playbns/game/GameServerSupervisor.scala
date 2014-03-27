@@ -57,7 +57,7 @@ object GameServerSupervisor {
     def newAreaExecutor(areaId: Int) = {
       val executor = actorOf(name[AreaExecutor] + "-" + areaId)
 
-      handlersOf[LobbyExecutor] foreach (clazz => {
+      handlersOf[AreaExecutor] foreach (clazz => {
         val params: Seq[Any] = clazz match {
           case x if x.isChildOf[AreaHandler] => Seq(areaId)
           case _ => Seq()
